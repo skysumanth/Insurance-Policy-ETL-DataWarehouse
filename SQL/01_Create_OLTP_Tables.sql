@@ -1,0 +1,17 @@
+USE InsurancePortalDB;
+GO
+IF OBJECT_ID('dbo.Policies') IS NOT NULL DROP TABLE dbo.Policies;
+GO
+CREATE TABLE dbo.Policies(
+ PolicyID INT IDENTITY(1,1) PRIMARY KEY,
+ PolicyNumber VARCHAR(50) NOT NULL UNIQUE,
+ CustomerName VARCHAR(200) NOT NULL,
+ PolicyType VARCHAR(50) NOT NULL,
+ Premium DECIMAL(18,2) NOT NULL,
+ EffectiveDate DATETIME NOT NULL,
+ ExpiryDate DATETIME NOT NULL,
+ State VARCHAR(100) NOT NULL,
+ CreatedDate DATETIME DEFAULT GETDATE(),
+ ModifiedDate DATETIME NULL
+);
+GO

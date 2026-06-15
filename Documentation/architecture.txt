@@ -1,0 +1,64 @@
+- Python Flask
+- SQL Server
+- SSIS
+- REST APIs
+- Postman
+- C#
+- ADO.NET
+- Data Warehousing
+--------------------------------------------------------------------
+
+  
+
+                  INSURANCE ETL PLATFORM
+────────────────────────────────────────────────────
+
+           Flask Insurance Portal
+                    │
+                    ▼
+             SQL Server (OLTP)
+                    │
+                    ▼
+               REST APIs
+                    │
+                    ▼
+                Postman
+                    │
+                    ▼
+             SSIS Master Package
+                    │
+    ┌───────────────┼────────────────┐
+    ▼               ▼                ▼
+Audit Start   Health Check    Extract API
+                                    │
+                                    ▼
+                             Policies.json
+                                    │
+                                    ▼
+                           Load Staging
+                                    │
+                                    ▼
+                              Validation
+                                    │
+                      ┌─────────────┴─────────────┐
+                      ▼                           ▼
+                 Valid Records            Rejected Records
+                      │                           │
+                      ▼                           ▼
+              Remove Rejects             Rej_Policies
+                      │
+                      ▼
+             Load Dimensions
+             ┌───────────────┐
+             ▼               ▼
+      DimPolicyType     DimState
+             │               │
+             └───────┬───────┘
+                     ▼
+               FactPolicy
+                     │
+                     ▼
+              Audit Logging
+                     │
+                     ▼
+             ETL_Run_History
